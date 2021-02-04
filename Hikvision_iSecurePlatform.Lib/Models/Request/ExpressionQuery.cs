@@ -7,10 +7,14 @@ using Newtonsoft.Json.Converters;
 
 namespace Hikvision_iSecurePlatform.Lib.Models.Request
 {
-    public class PageQuery
+    public class ExpressionQuery
     {
-       public int? pageNo{get;set;}
-       public int? pageSize{get;set;}
+       public String key{get;set;}
+
+       public int? @operator{get;set;}
+
+       public List<String> values{get;set;}
+
     }
 
 }

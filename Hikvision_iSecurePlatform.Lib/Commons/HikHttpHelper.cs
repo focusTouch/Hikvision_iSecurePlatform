@@ -35,7 +35,7 @@ namespace Hikvision_iSecurePlatform.Lib.Commons
             this.HikiScureBaseUrl = (UseHttps ? "https" : "http") + "://" + this.HikiScureIp + ((this.HikiScurePort == 80 || this.HikiScurePort == 443) ? "" : (":" + this.HikiScurePort));
         }
 
-        public T HttpPostCast<T>(String reqUrl, Object reqBody=null, string contentType = "application/json")
+        public T HttpPostCast<T>(String reqUrl, Object reqBody = null, string contentType = "application/json")
         {
             T result = default(T);
             var buffer = HttpPost(reqUrl, reqBody, contentType);
@@ -45,22 +45,43 @@ namespace Hikvision_iSecurePlatform.Lib.Commons
             }
             else if (typeof(T) == typeof(String))
             {
-                result = (T)(Object)Encoding.UTF8.GetString(buffer);
+                var str = Encoding.UTF8.GetString(buffer);
+                result = (T)(Object)str;
+                Console.WriteLine("<<<<<<<======" + result);
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+
+
             }
-            else  if(typeof(T) == typeof(byte[]))
+            else if (typeof(T) == typeof(byte[]))
             {
                 result = (T)(Object)buffer;
             }
-            else 
+            else
             {
                 var json = Encoding.UTF8.GetString(buffer);
-                result=JsonConvert.DeserializeObject<T>(json);
+                Console.WriteLine("<<<<<<<======" + json);
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+                result = JsonConvert.DeserializeObject<T>(json);
             }
             return result;
         }
 
 
-        public byte[] HttpPost(String reqUrl, Object reqBody=null, string contentType = "application/json")
+        public byte[] HttpPost(String reqUrl, Object reqBody = null, string contentType = "application/json")
         {
             byte[] result = null;
             // this.HikiScureBaseUrl=this.HikiScureBaseUrl+"/artemis";
@@ -75,6 +96,7 @@ namespace Hikvision_iSecurePlatform.Lib.Commons
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add("Accept", "*/*");
             dictionary.Add("Content-Type", contentType);
+            dictionary.Add("tagId", "1");
             // bool flag2 = ex_headers.Count > 0;
             // if (flag2)
             // {
@@ -87,8 +109,7 @@ namespace Hikvision_iSecurePlatform.Lib.Commons
             request.Headers = dictionary;
             request.SignHeaderPrefixList = null;
             request.Querys = null;
-            request.StringBody = JsonConvert.SerializeObject(reqBody==null?new object():reqBody);
-
+            request.StringBody = JsonHelper.SerializeObjectIgnoreNull(reqBody == null ? new object() : reqBody);
 
             Console.WriteLine("==========================================");
             Console.WriteLine(request.Host);
@@ -101,6 +122,19 @@ namespace Hikvision_iSecurePlatform.Lib.Commons
             Console.WriteLine(request.AppKey);
             Console.WriteLine(request.AppSecret);
             Console.WriteLine("==========================================");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("===>>>" + request.StringBody);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();

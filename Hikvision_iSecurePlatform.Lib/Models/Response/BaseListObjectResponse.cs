@@ -5,12 +5,13 @@ using Newtonsoft.Json;
 using Hikvision_iSecurePlatform.Lib.Commons;
 using Newtonsoft.Json.Converters;
 
-namespace Hikvision_iSecurePlatform.Lib.Models.Request
+namespace Hikvision_iSecurePlatform.Lib.Models.Response
 {
-    public class PageQuery
+    public class BaseListObjectResponse<T> : BaseResponse<T>
     {
-       public int? pageNo{get;set;}
-       public int? pageSize{get;set;}
+        public new List<T> data{get;set;}
     }
+
+
 
 }

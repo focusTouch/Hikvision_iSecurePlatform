@@ -7,10 +7,9 @@ using Newtonsoft.Json.Converters;
 
 namespace Hikvision_iSecurePlatform.Lib.Models.Request
 {
-    public class PageQuery
+    public class FaceData
     {
-       public int? pageNo{get;set;}
-       public int? pageSize{get;set;}
+       public String faceData{get;set;}
     }
 
 }

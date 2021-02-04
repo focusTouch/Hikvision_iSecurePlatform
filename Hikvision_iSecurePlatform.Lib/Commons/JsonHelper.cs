@@ -36,4 +36,11 @@ public class JsonHelper
 	{
 		return JsonConvert.DeserializeAnonymousType<T>(json, anonymousTypeObject);
 	}
+
+	public  static String SerializeObjectIgnoreNull(Object obj)
+	{
+		JsonSerializerSettings jsonSerializerSettings=new JsonSerializerSettings();
+		jsonSerializerSettings.NullValueHandling=NullValueHandling.Ignore;
+		return JsonConvert.SerializeObject(obj,jsonSerializerSettings);
+	}
 }

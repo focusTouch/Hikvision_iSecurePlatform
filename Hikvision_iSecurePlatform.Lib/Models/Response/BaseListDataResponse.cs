@@ -7,11 +7,9 @@ using Newtonsoft.Json.Converters;
 
 namespace Hikvision_iSecurePlatform.Lib.Models.Response
 {
-    public class BaseListDataResponse<T> 
+    public class BaseListDataResponse<T> : BaseResponse<T>
     {
-        public string code{get;set;}
-       public string msg{get;set;}
-        public listData<T> data{get;set;}
+        public new listData<T> data{get;set;}
 
     }
 

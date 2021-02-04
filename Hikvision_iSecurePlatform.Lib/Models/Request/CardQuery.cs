@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
@@ -7,10 +7,13 @@ using Newtonsoft.Json.Converters;
 
 namespace Hikvision_iSecurePlatform.Lib.Models.Request
 {
-    public class PageQuery
+    public class CardQuery
     {
-       public int? pageNo{get;set;}
-       public int? pageSize{get;set;}
+        public int pageNo { get; set; }
+
+        public int pageSize { get; set; }
+
+
     }
 
 }
